@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 import Dashboard from '../../components/Dashboard';
 
-const BACKEND_URL = 'http://127.0.0.1:5005';
+const BACKEND_URL = 'https://print-flow-delta.vercel.app';
 
 // ==========================================
 // 1. ORDERS MANAGEMENT PAGE

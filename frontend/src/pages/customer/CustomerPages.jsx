@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import CustomerOrdersList from '../../components/CustomerOrdersList';
 
-const BACKEND_URL = 'http://127.0.0.1:5005';
+const BACKEND_URL = 'https://print-flow-delta.vercel.app';
 
 // Mock catalog categories & popular items
 const CATEGORIES = [

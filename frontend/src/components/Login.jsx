@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Eye, EyeOff } from 'lucide-react';
 
-const BACKEND_URL = 'http://127.0.0.1:5005';
+const BACKEND_URL = 'https://print-flow-delta.vercel.app';
 
 export default function Login({ onLogin, onToast, theme, setTheme }) {
   const [activeTab, setActiveTab] = useState('login'); // login, register

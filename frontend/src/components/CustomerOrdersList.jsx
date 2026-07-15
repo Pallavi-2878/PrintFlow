@@ -13,7 +13,7 @@ import {
   Download
 } from 'lucide-react';
 
-const BACKEND_URL = 'http://127.0.0.1:5005';
+const BACKEND_URL = 'https://print-flow-delta.vercel.app';
 const STATUS_STEPS = ['Pending', 'Printing', 'Completed', 'Delivered'];
 
 export default function CustomerOrdersList({ user, onToast }) {

@@ -19,7 +19,7 @@ import {
   Link2
 } from 'lucide-react';
 
-const BACKEND_URL = 'http://127.0.0.1:5005';
+const BACKEND_URL = 'https://print-flow-delta.vercel.app';
 
 export default function Dashboard({ onToast }) {
   const [orders, setOrders] = useState([]);

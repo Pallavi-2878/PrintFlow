@@ -32,7 +32,12 @@ app.get('/', (req, res) => {
 
 // Database Connection
 mongoose
-  .connect(MONGODB_URI)
+  .connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 5000,
+    socketTimeoutMS: 45000,
+  })
   .then(() => {
     console.log('Successfully connected to MongoDB.');
   })

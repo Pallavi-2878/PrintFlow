@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --color-bg: #FAF8F2; /* Warm ivory/cream luxury canvas */
+    --color-surface: #FFFFFF;
+    --color-card: #FFFFFF;
+    --color-text: #1C1917; /* Warm charcoal stone */
+    --color-text-sec: #78716C; /* Warm dark sand */
+    --color-border: rgba(212, 175, 55, 0.15); /* Subtle gold tint outline */
+    --color-shadow: 0 12px 30px rgba(212, 175, 55, 0.05); /* Warm gold halo shadow */
+    --color-input: #FFFFFF;
+    --color-header: #FFFFFF;
+    --color-header-text: #1C1917;
+    --color-header-border: rgba(212, 175, 55, 0.15);
+    --color-kpi-bg: #FDFCF7;
+    --color-primary: #C5A02F; /* Higher contrast luxury gold */
+    --color-primary-hover: #AB871E;
+    --gradient-accent: linear-gradient(to right, #E0C068, #B8962A);
+    --gradient-accent-hover: linear-gradient(to right, #C9A953, #9E801F);
+  }
+
+  .dark {
+    --color-bg: #121212;
+    --color-surface: #1A1A1A;
+    --color-card: #1F1F1F;
+    --color-text: #FFFFFF;
+    --color-text-sec: #B8B8B8;
+    --color-border: rgba(255, 255, 255, 0.08);
+    --color-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    --color-input: #1A1A1A;
+    --color-header: #1A1A1A;
+    --color-header-text: #FFFFFF;
+    --color-header-border: rgba(255, 255, 255, 0.08);
+    --color-kpi-bg: #1A1A1A;
+    --color-primary: #D4AF37;
+    --color-primary-hover: #C5A02F;
+    --gradient-accent: linear-gradient(to right, #E8C874, #D4AF37);
+    --gradient-accent-hover: linear-gradient(to right, #DFBA69, #C5A02F);
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    min-h-screen: 100vh;
+    overflow-x: hidden;
+  }
+}
+
+/* Glassmorphism utility adaptation to CSS variables */
+.glass {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--color-shadow);
+}
+
+/* Background floating blobs */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(150px) !important;
+  background-color: var(--color-primary) !important;
+  opacity: 0.04 !important;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(4%, 4%) scale(1.1); }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 3px;
+}
+
+/* Form control inputs & selects */
+.form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-input);
+  color: var(--color-text);
+  outline: none;
+  font-size: 0.95rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(197, 160, 89, 0.2);
+}
+
+/* Gradient Utilities */
+.bg-accent-gradient {
+  background: var(--gradient-accent) !important;
+  color: #000000 !important;
+}
+
+.bg-accent-gradient-hover:hover {
+  background: var(--gradient-accent-hover) !important;
+  color: #000000 !important;
+}
+
+.text-accent-gradient {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+}

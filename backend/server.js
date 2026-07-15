@@ -11,6 +11,9 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/printflow';
 
+const safeURI = MONGODB_URI.replace(/:([^@]+)@/, ':****@');
+console.log('Connecting to database URI:', safeURI);
+
 // Middleware
 app.use(cors());
 app.use(express.json());

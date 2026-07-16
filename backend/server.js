@@ -40,8 +40,6 @@ async function connectToDatabase() {
   
   console.log('Connecting to database...');
   cachedConnection = await mongoose.connect(MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
     serverSelectionTimeoutMS: 5050,
     socketTimeoutMS: 45000,
   });

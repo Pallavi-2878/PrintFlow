@@ -30,20 +30,35 @@ app.get('/', (req, res) => {
   res.send('PrintFlow Backend API is running...');
 });
 
-// Database Connection
-mongoose
-  .connect(MONGODB_URI, {
+// Cache MongoDB connection globally in serverless environments
+let cachedConnection = null;
+
+async function connectToDatabase() {
+  if (cachedConnection) {
+    return cachedConnection;
+  }
+  
+  console.log('Connecting to database...');
+  cachedConnection = await mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    serverSelectionTimeoutMS: 5000,
+    serverSelectionTimeoutMS: 5050,
     socketTimeoutMS: 45000,
-  })
-  .then(() => {
-    console.log('Successfully connected to MongoDB.');
-  })
-  .catch((err) => {
-    console.error('MongoDB connection error:', err);
   });
+  console.log('Successfully connected to MongoDB.');
+  return cachedConnection;
+}
+
+// Middleware to ensure database connection before handling requests
+app.use(async (req, res, next) => {
+  try {
+    await connectToDatabase();
+    next();
+  } catch (err) {
+    console.error('Database connection middleware error:', err);
+    res.status(500).json({ error: 'Database connection failed' });
+  }
+});
 
 // Listen if run locally
 if (process.env.NODE_ENV !== 'production') {

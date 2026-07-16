@@ -2,13 +2,25 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose');
 const User = require('../models/User');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'printflow_secret_key_12345';
 
+// Helper to ensure database is connected
+const ensureDbConnected = async () => {
+  if (mongoose.connection.readyState === 1) return;
+  const uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/printflow';
+  await mongoose.connect(uri, {
+    serverSelectionTimeoutMS: 5050,
+    socketTimeoutMS: 45000,
+  });
+};
+
 // Register User
 router.post('/register', async (req, res) => {
   try {
+    await ensureDbConnected();
     const { name, email, password, phone, role } = req.body;
 
     if (!name || !email || !password || !phone || !role) {
@@ -65,6 +77,7 @@ router.post('/register', async (req, res) => {
 // Login User
 router.post('/login', async (req, res) => {
   try {
+    await ensureDbConnected();
     const { email, password } = req.body;
 
     if (!email || !password) {

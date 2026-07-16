@@ -30,21 +30,18 @@ app.get('/', (req, res) => {
   res.send('PrintFlow Backend API is running...');
 });
 
-// Cache MongoDB connection globally in serverless environments
-let cachedConnection = null;
-
 async function connectToDatabase() {
-  if (cachedConnection) {
-    return cachedConnection;
+  if (mongoose.connection.readyState === 1) {
+    return mongoose.connection;
   }
   
   console.log('Connecting to database...');
-  cachedConnection = await mongoose.connect(MONGODB_URI, {
+  await mongoose.connect(MONGODB_URI, {
     serverSelectionTimeoutMS: 5050,
     socketTimeoutMS: 45000,
   });
   console.log('Successfully connected to MongoDB.');
-  return cachedConnection;
+  return mongoose.connection;
 }
 
 // Middleware to ensure database connection before handling requests

@@ -13,9 +13,8 @@ PrintFlow is a comprehensive, modern print shop ordering and customization manag
 - **Visual Previews**: Live visual feedback of products dynamically rendered on canvas element.
 - **Authentication System**: Secure JWT-based register/login system with hashed passwords using `bcryptjs`.
 - **Role-Based Views / Dashboards**:
-  - **Customer View**: Browse products, customize specifications, calculate pricing, upload designs, and place orders.
+  - **Customer View**: Browse products, customize specifications, calculate pricing, and place orders with custom design payload.
   - **Owner / Administrator View**: Manage and track order status, review client print files, and monitor incoming jobs.
-- **File Uploads**: Supports sending print design files via `multer`.
 
 ---
 
